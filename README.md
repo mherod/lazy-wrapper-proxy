@@ -13,4 +13,8 @@ val appComponent by lazyProxyLazy<AppComponent> {
 }
 ```
 
-Now the DaggerAppComponent is only constructed for the first call to one of its methods. For the Dagger dependency graph of the project I had build in mind for there are many modules each with their own components and so this measure is able to really reduce class construction and the time to inject the component for the first time at runtime.
+Now the DaggerAppComponent is only constructed for the first call to one of its methods. For the Dagger dependency graph of the project I had build in mind for there are many modules each with their own components and so this measure is able to really reduce class construction, and the time to inject the component for the first time at runtime.
+
+## How does it work?
+
+You say what the interface is, and a proxy class is created for that interface. The proxy handles invocations for method calls to the interface by delegating to the implementation you supplied, which is called lazily.
